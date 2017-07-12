@@ -6,9 +6,8 @@ import org.junit.Test;
 import static com.codurance.leaderboard.Race.FIRST_POSITION_POINTS;
 import static com.codurance.leaderboard.Race.SECOND_POSITION_POINTS;
 import static com.codurance.leaderboard.Race.THIRD_POSITION_POINTS;
-import static com.codurance.leaderboard.TestData.LEWIS;
-import static com.codurance.leaderboard.TestData.NICO;
-import static com.codurance.leaderboard.TestData.SEBASTIAN;
+import static com.codurance.leaderboard.TestData.*;
+import static org.junit.Assert.assertEquals;
 
 public class RaceTest {
 
@@ -19,9 +18,9 @@ public class RaceTest {
         // act
 
         // verify
-        Assert.assertEquals(FIRST_POSITION_POINTS, TestData.race1.getPoints(NICO));
-        Assert.assertEquals(SECOND_POSITION_POINTS, TestData.race1.getPoints(LEWIS));
-        Assert.assertEquals(THIRD_POSITION_POINTS, TestData.race1.getPoints(SEBASTIAN));
+        assertEquals(FIRST_POSITION_POINTS, TestData.race1.getPoints(NICO));
+        assertEquals(SECOND_POSITION_POINTS, TestData.race1.getPoints(LEWIS));
+        assertEquals(THIRD_POSITION_POINTS, TestData.race1.getPoints(SEBASTIAN));
     }
 
 }

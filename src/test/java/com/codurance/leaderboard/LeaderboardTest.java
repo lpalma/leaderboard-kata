@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import static com.codurance.leaderboard.Race.FIRST_POSITION_POINTS;
+import static com.codurance.leaderboard.Race.SECOND_POSITION_POINTS;
 import static com.codurance.leaderboard.TestData.LEWIS;
 import static com.codurance.leaderboard.TestData.NICO;
 import static com.codurance.leaderboard.TestData.SEBASTIAN;
@@ -22,8 +24,8 @@ public class LeaderboardTest {
         Map<String, Integer> results = TestData.sampleLeaderboard1.driverResults();
 
         // verify
-        assertTrue("results " + results, results.containsKey("Lewis Hamilton"));
-        assertEquals(18 + 18 + 25, (int) results.get("Lewis Hamilton"));
+        assertTrue("results " + results, results.containsKey(LEWIS.getName()));
+        assertEquals(SECOND_POSITION_POINTS + SECOND_POSITION_POINTS + FIRST_POSITION_POINTS, (int) results.get(LEWIS.getName()));
     }
 
     @Test
