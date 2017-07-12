@@ -17,4 +17,8 @@ public class SelfDrivingCar extends Driver {
         this.algorithmVersion = algorithmVersion;
     }
 
+    @Override
+    public String getName() {
+        return "Self Driving Car - " + this.getCountry() + " (" + this.getAlgorithmVersion() + ")";
+    }
 }
