@@ -19,10 +19,15 @@ public class Race {
     public Race(String name, Driver... drivers) {
         this.name = name;
         this.results = Arrays.asList(drivers);
-        this.driverNames = new HashMap<>();
+        this.driverNames = this.fillDriversName();
+    }
+
+    private Map<Driver, String> fillDriversName() {
+        Map<Driver, String> result = new HashMap<>();
         for (Driver driver : results) {
-            this.driverNames.put(driver, driver.getName());
+            result.put(driver, driver.getName());
         }
+        return result;
     }
 
     public int position(Driver driver) {
