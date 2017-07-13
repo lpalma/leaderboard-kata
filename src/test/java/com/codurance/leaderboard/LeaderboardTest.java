@@ -16,17 +16,6 @@ import static org.junit.Assert.assertTrue;
 
 public class LeaderboardTest {
 
-    @Test
-    public void itShouldSumThePoints() {
-        // setup
-
-        // act
-        Map<String, Integer> results = TestData.sampleLeaderboard1.driverResults();
-
-        // verify
-        assertTrue("results " + results, results.containsKey(LEWIS.getName()));
-        assertEquals(SECOND_POSITION_POINTS + SECOND_POSITION_POINTS + FIRST_POSITION_POINTS, (int) results.get(LEWIS.getName()));
-    }
 
     @Test
     public void shouldReturnRankingInProperOrder() {
