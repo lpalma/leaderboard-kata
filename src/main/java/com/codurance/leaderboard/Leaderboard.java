@@ -21,17 +21,19 @@ class Leaderboard {
     }
 
     List<String> driverRankings() {
-        return leaderboard.entrySet().stream()
-                                    .sorted(Map.Entry.comparingByValue(reverseOrder()))
-                                    .map(Map.Entry::getKey)
-                                    .collect(toList());
+        return leaderboard.entrySet()
+                            .stream()
+                            .sorted(Map.Entry.comparingByValue(reverseOrder()))
+                            .map(Map.Entry::getKey)
+                            .collect(toList());
     }
 
     private Map<String, Integer> calculateLeaderboard(List<Race> races) {
-        races.forEach(r -> r.drivers().forEach( d -> {
-            int points = leaderboard.getOrDefault(d.getName(), 0);
-            leaderboard.put(d.getName(), points + r.pointsFor(d));
-        }));
+        races.forEach(r ->
+                r.drivers().forEach( d -> {
+                    int points = leaderboard.getOrDefault(d.getName(), 0);
+                    leaderboard.put(d.getName(), points + r.pointsFor(d));
+                }));
         return leaderboard;
     }
 

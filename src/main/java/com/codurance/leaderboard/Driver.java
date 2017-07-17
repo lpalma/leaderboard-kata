@@ -14,6 +14,10 @@ public class Driver {
         return name;
     }
 
+    public Driver copy() {
+        return new Driver(getName(), country);
+    }
+
     @Override
     public String toString() {
         return "Driver{" +

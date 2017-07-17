@@ -1,24 +1,23 @@
 package com.codurance.leaderboard;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import static com.codurance.leaderboard.Points.pointsForPosition;
+import static java.util.Arrays.stream;
+import static java.util.stream.Collectors.toList;
 
 public class Race {
 
     private final String name;
     private final List<Driver> drivers;
-    private final Map<Driver, String> driverNames;
 
     Race(String name, Driver... drivers) {
         this.name = name;
-        this.drivers = Arrays.asList(drivers);
-        this.driverNames = this.fillDriversName();
+        this.drivers = stream(drivers).map(Driver::copy).collect(toList());
     }
 
     int pointsFor(Driver driver) {
-        return Points.pointsForPosition(position(driver));
+        return pointsForPosition(position(driver));
     }
 
     List<Driver> drivers() {
@@ -26,15 +25,11 @@ public class Race {
     }
 
     String getDriverName(Driver driver) {
-        return this.driverNames.get(driver);
-    }
-
-    private Map<Driver, String> fillDriversName() {
-        Map<Driver, String> result = new HashMap<>();
-        for (Driver driver : drivers) {
-            result.put(driver, driver.getName());
-        }
-        return result;
+        return drivers.stream()
+                        .filter(d -> d.equals(driver))
+                        .findFirst()
+                        .orElse(driver)
+                        .getName();
     }
 
     private int position(Driver driver) {
