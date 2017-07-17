@@ -11,7 +11,7 @@ public class Race {
     private final List<Driver> drivers;
     private final Map<Driver, String> driverNames;
 
-    public Race(String name, Driver... drivers) {
+    Race(String name, Driver... drivers) {
         this.name = name;
         this.drivers = Arrays.asList(drivers);
         this.driverNames = this.fillDriversName();

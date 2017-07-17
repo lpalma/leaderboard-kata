@@ -19,10 +19,10 @@ public class RaceTest {
 
     @Test public void
     return_the_points_for_each_driver_according_to_their_final_position() {
-        Driver Massa = new Driver("Massa", "", 0);
-        Driver Lewis = new Driver("Lewis", "", 0);
-        Driver Manolo = new Driver("Manolo", "", 0);
-        Driver Nico = new Driver("Nico", "", 0);
+        Driver Massa = new Driver("Massa", "");
+        Driver Lewis = new Driver("Lewis", "");
+        Driver Manolo = new Driver("Manolo", "");
+        Driver Nico = new Driver("Nico", "");
         Race race = new Race("Interlagos", Massa, Lewis, Manolo, Nico);
 
         assertThat(race.pointsFor(Massa), is(FIRST_POSITION_POINTS));

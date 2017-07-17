@@ -6,7 +6,7 @@ public class SelfDrivingCar extends Driver {
     private String company;
 
     public SelfDrivingCar(String algorithmVersion, String company) {
-        super(algorithmVersion, "", 0);
+        super(algorithmVersion, "");
         this.algorithmVersion = algorithmVersion;
         this.company = company;
     }

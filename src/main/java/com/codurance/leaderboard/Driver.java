@@ -4,24 +4,14 @@ public class Driver {
 
     private final String name;
     private final String country;
-    private int points;
 
-    public Driver(String name, String country, int points) {
+    Driver(String name, String country) {
         this.name = name;
         this.country = country;
-        this.points = points;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public int points() {
-        return this.points;
     }
 
     @Override
@@ -29,7 +19,6 @@ public class Driver {
         return "Driver{" +
                 "name='" + name + '\'' +
                 ", country='" + country + '\'' +
-                ", points=" + points +
                 '}';
     }
 

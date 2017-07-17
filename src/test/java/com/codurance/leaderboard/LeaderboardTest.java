@@ -16,9 +16,9 @@ import static org.junit.Assert.assertTrue;
 
 public class LeaderboardTest {
 
-    public static final Driver MANOLO = new Driver("Manolo", "CAT", 0);
-    public static final Driver MASSA = new Driver("Massa", "BR", 0);
-    public static final Driver CHUN_JE = new Driver("Chun Je", "CH", 0);
+    public static final Driver MANOLO = new Driver("Manolo", "CAT");
+    public static final Driver MASSA = new Driver("Massa", "BR");
+    public static final Driver CHUN_JE = new Driver("Chun Je", "CH");
     public static final Race INDIANAPOLIS = new Race("Indianapolis", MASSA, CHUN_JE, MANOLO);
     public static final Race MONTMELO = new Race("Montmelo", MANOLO, MASSA, CHUN_JE);
 
