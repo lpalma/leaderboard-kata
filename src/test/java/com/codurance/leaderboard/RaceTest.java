@@ -3,9 +3,9 @@ package com.codurance.leaderboard;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static com.codurance.leaderboard.Race.FIRST_POSITION_POINTS;
-import static com.codurance.leaderboard.Race.SECOND_POSITION_POINTS;
-import static com.codurance.leaderboard.Race.THIRD_POSITION_POINTS;
+import static com.codurance.leaderboard.Points.FIRST_POSITION_POINTS;
+import static com.codurance.leaderboard.Points.SECOND_POSITION_POINTS;
+import static com.codurance.leaderboard.Points.THIRD_POSITION_POINTS;
 import static com.codurance.leaderboard.TestData.*;
 import static org.junit.Assert.assertEquals;
 
