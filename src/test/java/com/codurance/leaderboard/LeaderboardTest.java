@@ -16,9 +16,9 @@ import static org.junit.Assert.assertTrue;
 
 public class LeaderboardTest {
 
-    public static final Driver MANOLO = new Driver("Manolo", "CAT");
-    public static final Driver MASSA = new Driver("Massa", "BR");
-    public static final Driver CHUN_JE = new Driver("Chun Je", "CH");
+    public static final Driver MANOLO = new Driver("Manolo", "CAT", 0);
+    public static final Driver MASSA = new Driver("Massa", "BR", 0);
+    public static final Driver CHUN_JE = new Driver("Chun Je", "CH", 0);
     public static final Race INDIANAPOLIS = new Race("Indianapolis", MASSA, CHUN_JE, MANOLO);
     public static final Race MONTMELO = new Race("Montmelo", MANOLO, MASSA, CHUN_JE);
 
@@ -51,9 +51,10 @@ public class LeaderboardTest {
     public void itShouldKeepAllDriversWhenSamePoints() {
         // setup
         // bug, drops drivers with same points
-        Race winDriver1 = new Race("Australian Grand Prix", NICO, LEWIS, SEBASTIAN);
-        Race winDriver2 = new Race("Malaysian Grand Prix", LEWIS, NICO, SEBASTIAN);
-        Leaderboard exEquoLeaderBoard = new Leaderboard(winDriver1, winDriver2);
+        Race australia = new Race("Australian Grand Prix", NICO, LEWIS, SEBASTIAN);
+        Race malaysia = new Race("Malaysian Grand Prix", LEWIS, NICO, SEBASTIAN);
+        Race brazil = new Race("Brazlian Grand Prix", NICO, LEWIS, SEBASTIAN);
+        Leaderboard exEquoLeaderBoard = new Leaderboard(australia, malaysia);
 
         // act
         List<String> rankings = exEquoLeaderBoard.driverRankings();

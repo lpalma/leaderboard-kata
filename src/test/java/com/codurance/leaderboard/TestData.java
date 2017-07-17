@@ -18,9 +18,9 @@ public class TestData {
     public static Leaderboard sampleLeaderboard2;
 
     static {
-        NICO = new Driver("Nico Rosberg", "DE");
-        LEWIS = new Driver("Lewis Hamilton", "UK");
-        SEBASTIAN = new Driver("Sebastian Vettel", "DE");
+        NICO = new Driver("Nico Rosberg", "DE", 0);
+        LEWIS = new Driver("Lewis Hamilton", "UK", 0);
+        SEBASTIAN = new Driver("Sebastian Vettel", "DE", 0);
         SELF_DRIVER = new SelfDrivingCar("1.2", "Acme");
 
         race1 = new Race("Australian Grand Prix", NICO, LEWIS, SEBASTIAN);

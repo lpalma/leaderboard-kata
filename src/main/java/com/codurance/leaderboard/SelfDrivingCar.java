@@ -3,10 +3,12 @@ package com.codurance.leaderboard;
 public class SelfDrivingCar extends Driver {
 
     private String algorithmVersion;
+    private String company;
 
     public SelfDrivingCar(String algorithmVersion, String company) {
-        super(algorithmVersion, company);
+        super(algorithmVersion, "", 0);
         this.algorithmVersion = algorithmVersion;
+        this.company = company;
     }
 
     public String getAlgorithmVersion() {
@@ -19,6 +21,6 @@ public class SelfDrivingCar extends Driver {
 
     @Override
     public String getName() {
-        return "Self Driving Car - " + this.getCountry() + " (" + this.getAlgorithmVersion() + ")";
+        return "Self Driving Car - " + this.company + " (" + this.getAlgorithmVersion() + ")";
     }
 }
