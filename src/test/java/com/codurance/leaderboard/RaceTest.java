@@ -1,27 +1,14 @@
 package com.codurance.leaderboard;
 
-import org.junit.Assert;
 import org.junit.Test;
 
-import static com.codurance.leaderboard.Points.FIRST_POSITION_POINTS;
-import static com.codurance.leaderboard.Points.SECOND_POSITION_POINTS;
-import static com.codurance.leaderboard.Points.THIRD_POSITION_POINTS;
+import static com.codurance.leaderboard.Points.*;
 import static com.codurance.leaderboard.TestData.*;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class RaceTest {
-
-    @Test
-    public void isShouldCalculateDriverPoints() {
-        // setup
-
-        // act
-
-        // verify
-        assertEquals(FIRST_POSITION_POINTS, TestData.race1.getPoints(NICO));
-        assertEquals(SECOND_POSITION_POINTS, TestData.race1.getPoints(LEWIS));
-        assertEquals(THIRD_POSITION_POINTS, TestData.race1.getPoints(SEBASTIAN));
-    }
 
     @Test
     public void itShouldDisplayDriverName() {
@@ -30,4 +17,17 @@ public class RaceTest {
         assertEquals(driverName, TestData.race4.getDriverName(SELF_DRIVER));
     }
 
+    @Test public void
+    return_the_points_for_each_driver_according_to_their_final_position() {
+        Driver Massa = new Driver("Massa", "", 0);
+        Driver Lewis = new Driver("Lewis", "", 0);
+        Driver Manolo = new Driver("Manolo", "", 0);
+        Driver Nico = new Driver("Nico", "", 0);
+        Race race = new Race("Interlagos", Massa, Lewis, Manolo, Nico);
+
+        assertThat(race.pointsFor(Massa), is(FIRST_POSITION_POINTS));
+        assertThat(race.pointsFor(Lewis), is(SECOND_POSITION_POINTS));
+        assertThat(race.pointsFor(Manolo), is(THIRD_POSITION_POINTS));
+        assertThat(race.pointsFor(Nico), is(0));
+    }
 }

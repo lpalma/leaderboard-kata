@@ -8,37 +8,37 @@ import java.util.Map;
 public class Race {
 
     private final String name;
-    private final List<Driver> results;
+    private final List<Driver> drivers;
     private final Map<Driver, String> driverNames;
 
     public Race(String name, Driver... drivers) {
         this.name = name;
-        this.results = Arrays.asList(drivers);
+        this.drivers = Arrays.asList(drivers);
         this.driverNames = this.fillDriversName();
+    }
+
+    int pointsFor(Driver driver) {
+        return Points.pointsForPosition(position(driver));
+    }
+
+    List<Driver> drivers() {
+        return drivers;
+    }
+
+    String getDriverName(Driver driver) {
+        return this.driverNames.get(driver);
     }
 
     private Map<Driver, String> fillDriversName() {
         Map<Driver, String> result = new HashMap<>();
-        for (Driver driver : results) {
+        for (Driver driver : drivers) {
             result.put(driver, driver.getName());
         }
         return result;
     }
 
-    public int position(Driver driver) {
-        return this.results.indexOf(driver);
-    }
-
-    public int getPoints(Driver driver) {
-        return Points.pointsForPosition(position(driver));
-    }
-
-    public List<Driver> getResults() {
-        return results;
-    }
-
-    public String getDriverName(Driver driver) {
-        return this.driverNames.get(driver);
+    private int position(Driver driver) {
+        return this.drivers.indexOf(driver);
     }
 
     @Override
@@ -46,13 +46,4 @@ public class Race {
         return name;
     }
 
-    Map<String, Integer> getRaceResult() {
-        Map<String, Integer> result = new HashMap<>();
-        for (Driver driver : getResults()) {
-            String driverName = getDriverName(driver);
-            int points = getPoints(driver);
-            result.put(driverName, points);
-        }
-        return result;
-    }
 }

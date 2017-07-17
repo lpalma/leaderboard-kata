@@ -1,25 +1,38 @@
 package com.codurance.leaderboard;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static java.util.Arrays.asList;
+import static java.util.Comparator.reverseOrder;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 
 class Leaderboard {
 
-    private final List<Driver> drivers;
+    private Map<String, Integer> leaderboard = new HashMap<>();
 
     Leaderboard(Race... races) {
-        this.drivers = new LeaderboardCalculator(asList(races)).driversByPoint();
+        leaderboard = calculateLeaderboard(asList(races));
     }
 
     Map<String, Integer> driverResults() {
-        return drivers.stream().collect(toMap(Driver::getName, Driver::points));
+        return leaderboard;
     }
 
     List<String> driverRankings() {
-        return drivers.stream().map(Driver::getName).collect(toList());
+        return leaderboard.entrySet().stream()
+                                    .sorted(Map.Entry.comparingByValue(reverseOrder()))
+                                    .map(Map.Entry::getKey)
+                                    .collect(toList());
+    }
+
+    private Map<String, Integer> calculateLeaderboard(List<Race> races) {
+        races.forEach(r -> r.drivers().forEach( d -> {
+            int points = leaderboard.getOrDefault(d.getName(), 0);
+            leaderboard.put(d.getName(), points + r.pointsFor(d));
+        }));
+        return leaderboard;
     }
 
 }
