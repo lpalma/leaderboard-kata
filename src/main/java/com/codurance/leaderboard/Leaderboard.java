@@ -1,12 +1,9 @@
 package com.codurance.leaderboard;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Leaderboard {
 
@@ -50,29 +47,23 @@ public class Leaderboard {
         }
 
         public Map<String, Integer> driverResults() {
-            Map<String, Integer> results = new HashMap<>();
-            for (Race race : this.races) {
-                calculateResults(results, race);
-            }
-            return results;
+            return this.races.stream()
+                    .map(toEntrySet())
+                    .flatMap(Collection::stream)
+                    .collect(mergeResults());
         }
 
-        private Map<String, Integer> getRaceResult(Race race) {
-            Map<String, Integer> result = new HashMap<>();
-            for (Driver driver : race.getResults()) {
-                String driverName = race.getDriverName(driver);
-                int points = race.getPoints(driver);
-                result.put(driverName, points);
-            }
-            return result;
+        private Collector<Map.Entry<String, Integer>, ?, Map<String, Integer>> mergeResults() {
+            return Collectors.toMap(
+                    Map.Entry::getKey,
+                    Map.Entry::getValue,
+                    Integer::sum
+            );
         }
 
-        private void calculateResults(Map<String, Integer> results, Race race) {
-            this.getRaceResult(race).entrySet().forEach(
-                    raceResult -> results.merge(
-                            raceResult.getKey(),
-                            raceResult.getValue(),
-                            (v1, v2) -> v1 + v2));
+        private Function<Race, Set<Map.Entry<String, Integer>>> toEntrySet() {
+            return race -> race.getRaceResult().entrySet();
         }
+
     }
 }

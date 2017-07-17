@@ -45,4 +45,14 @@ public class Race {
     public String toString() {
         return name;
     }
+
+    Map<String, Integer> getRaceResult() {
+        Map<String, Integer> result = new HashMap<>();
+        for (Driver driver : getResults()) {
+            String driverName = getDriverName(driver);
+            int points = getPoints(driver);
+            result.put(driverName, points);
+        }
+        return result;
+    }
 }
