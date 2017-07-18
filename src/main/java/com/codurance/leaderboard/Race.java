@@ -1,10 +1,13 @@
 package com.codurance.leaderboard;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 import static com.codurance.leaderboard.Points.pointsForPosition;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 
 public class Race {
 
@@ -22,6 +25,11 @@ public class Race {
 
     List<Driver> drivers() {
         return drivers;
+    }
+
+    public Map<Driver, Integer> results() {
+        return drivers.stream()
+                .collect(toMap(Function.identity(), this::pointsFor));
     }
 
     String getDriverName(Driver driver) {
